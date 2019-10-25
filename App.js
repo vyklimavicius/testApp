@@ -1,27 +1,38 @@
 import React from 'react';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator} from 'react-navigation-stack';
-import {StyleSheet, Text, View, Button, Image} from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
 import DetailScreen from './screens/DetailScreen.js';
 import ListScreen from './screens/ListScreen.js';
 
 const HomeScreen = (props) => {
-  // console.log(props);
-  
+    
   return (
     <View>
+      <Text style={style.textStyle}>HomeScreen</Text>
+      <View style={style.button}>
       <Button 
         title="Send me to Details"
         onPress={() => props.navigation.navigate('Details')}
       />
+      <Button 
+        title="Send me to List"
+        onPress={() => props.navigation.navigate('List')}
+      />
+      </View>
     </View>
   );
 };
 
 const style = StyleSheet.create({
   textStyle: {
-    fontSize: 10
+    fontSize: 20,
+    textAlign: "center"
   },
+  button: {
+    // flexDirection: 'row',
+    justifyContent: 'space-between',
+  }
 }
 );
 
@@ -35,12 +46,6 @@ const AppNavigator = createStackNavigator(
     initialRouteName: 'Home',
     defaultNavigationOptions:{
       title: 'TestApp',
-      headerTitle: (
-      <Image 
-       style = {{width: 50, height: 50}}
-       source = {require('./images/medal.png')}
-      />
-      )
     }
   }
 );

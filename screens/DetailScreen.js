@@ -9,7 +9,7 @@ const DetailScreen = () => {
 
 const styles = StyleSheet.create({
     textStyle: {
-        fontSize: 10
+        fontSize: 20
     }
 });
 

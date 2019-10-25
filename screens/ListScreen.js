@@ -39,7 +39,8 @@ const ListScreen = (props) => {
 
 const style = StyleSheet.create({
     header: {
-        fontSize: 20
+        fontSize: 20,
+        padding: 10
     },
     textStyle: {
         fontSize: 10

@@ -1,7 +1,7 @@
 import React from 'react';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator} from 'react-navigation-stack';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, TouchableOpacity } from 'react-native';
 import DetailScreen from './screens/DetailScreen.js';
 import ListScreen from './screens/ListScreen.js';
 
@@ -11,14 +11,19 @@ const HomeScreen = (props) => {
     <View>
       <Text style={style.textStyle}>HomeScreen</Text>
       <View style={style.button}>
-      <Button 
-        title="Send me to Details"
-        onPress={() => props.navigation.navigate('Details')}
-      />
-      <Button 
-        title="Send me to List"
-        onPress={() => props.navigation.navigate('List')}
-      />
+        <Button 
+          title="Send me to Details"
+          onPress={() => props.navigation.navigate('Details')}
+        />
+      </View>
+        {/* <TouchableOpacity onPress={() => props.navigation.navigate('Details')}>
+        <Text>I'm touchable!</Text>
+      </TouchableOpacity> */}
+      <View style={style.button}>
+        <Button 
+          title="Send me to List"
+          onPress={() => props.navigation.navigate('List')}
+        />
       </View>
     </View>
   );
@@ -30,8 +35,9 @@ const style = StyleSheet.create({
     textAlign: "center"
   },
   button: {
-    // flexDirection: 'row',
+    flexDirection: 'column',
     justifyContent: 'space-between',
+    padding: 10
   }
 }
 );

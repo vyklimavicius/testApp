@@ -21,7 +21,7 @@ const ListScreen = (props) => {
 
     return (
         <View>
-            <Text>I'm the list Screen</Text>
+            <Text style={style.header}>I'm the list Screen</Text>
             <View>
             <FlatList
                 data={DATA}
@@ -38,6 +38,9 @@ const ListScreen = (props) => {
 };
 
 const style = StyleSheet.create({
+    header: {
+        fontSize: 20
+    },
     textStyle: {
         fontSize: 10
     },

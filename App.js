@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator} from 'react-navigation-stack';
 import { StyleSheet, Text, View, Button, TouchableOpacity } from 'react-native';
@@ -8,8 +9,10 @@ import ImageScren from './screens/ImageScreen.js';
 
 const HomeScreen = (props) => {
     
+  const [count, setCount] = useState(0);
+
   return (
-    <View>
+    <View style={style.container}>
       <Text style={style.textStyle}>HomeScreen</Text>
       <View style={style.button}>
         <Button 
@@ -23,24 +26,51 @@ const HomeScreen = (props) => {
           onPress={() => props.navigation.navigate('List')}
         />
       </View>
-      <TouchableOpacity onPress={() => props.navigation.navigate('Details')}>
-      <Text style={style.textStyle}>I'm an Touchable element. I'll take you to the Detail screen!</Text>
-      </TouchableOpacity>
-      {/* <ImageScren /> */}
+      <View style={style.button}>
+        <Button 
+          title="Add to the count"
+          onPress={() => setCount(count + 1)}
+        />
+      </View>
+      <View style={style.button}>
+        <Button 
+          title="Reduce the count"
+          onPress={() => setCount(count - 1)}
+        />
+      </View>
+      <View style={style.button}>
+        <Button 
+          title="Reset the count!"
+          onPress={() => setCount(0)}
+        />
+      </View>
+      <View>
+        <TouchableOpacity onPress={() => props.navigation.navigate('Details')}>
+        <Text style={style.textStyle}>I'm an Touchable element. I'll take you to the Detail screen!</Text>
+        </TouchableOpacity>
+        <Text style={style.textStyle}>{count}</Text>
+      </View>
     </View>
+    
   );
 };
 
 const style = StyleSheet.create({
+  container: {
+    borderStyle: 'solid',
+  },
   textStyle: {
     fontSize: 20,
+    fontFamily: 'monospace',
     textAlign: "center",
     padding: 10
   },
   button: {
     flexDirection: 'column',
     justifyContent: 'space-between',
-    padding: 20
+    padding: 10,
+    marginLeft: 55,
+    width: 300
   }
 }
 );

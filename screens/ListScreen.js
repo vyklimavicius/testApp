@@ -48,6 +48,9 @@ const style = StyleSheet.create({
     box : {
         borderStyle: "solid",
         borderWidth: 2,
+        padding: 5,
+        marginLeft: 3,
+        marginRight: 3
         // marginVertical: 50
     }
 });

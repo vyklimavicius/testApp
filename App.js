@@ -4,6 +4,7 @@ import { createStackNavigator} from 'react-navigation-stack';
 import { StyleSheet, Text, View, Button, TouchableOpacity } from 'react-native';
 import DetailScreen from './screens/DetailScreen.js';
 import ListScreen from './screens/ListScreen.js';
+import ImageScren from './screens/ImageScreen.js';
 
 const HomeScreen = (props) => {
     
@@ -16,15 +17,16 @@ const HomeScreen = (props) => {
           onPress={() => props.navigation.navigate('Details')}
         />
       </View>
-        {/* <TouchableOpacity onPress={() => props.navigation.navigate('Details')}>
-        <Text>I'm touchable!</Text>
-      </TouchableOpacity> */}
       <View style={style.button}>
         <Button 
           title="Send me to List"
           onPress={() => props.navigation.navigate('List')}
         />
       </View>
+      <TouchableOpacity onPress={() => props.navigation.navigate('Details')}>
+      <Text style={style.textStyle}>I'm an Touchable element. I'll take you to the Detail screen!</Text>
+      </TouchableOpacity>
+      {/* <ImageScren /> */}
     </View>
   );
 };
@@ -32,12 +34,13 @@ const HomeScreen = (props) => {
 const style = StyleSheet.create({
   textStyle: {
     fontSize: 20,
-    textAlign: "center"
+    textAlign: "center",
+    padding: 10
   },
   button: {
     flexDirection: 'column',
     justifyContent: 'space-between',
-    padding: 10
+    padding: 20
   }
 }
 );
@@ -46,7 +49,8 @@ const AppNavigator = createStackNavigator(
   {
     Home: HomeScreen,
     Details: DetailScreen,
-    List: ListScreen
+    List: ListScreen,
+    Images: ImageScren
   },
   {
     initialRouteName: 'Home',

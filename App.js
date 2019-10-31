@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator} from 'react-navigation-stack';
-import { StyleSheet, Text, View, Button, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Button, TouchableOpacity, ActivityIndicator } from 'react-native';
 import DetailScreen from './screens/DetailScreen.js';
 import ListScreen from './screens/ListScreen.js';
 import ImageScren from './screens/ImageScreen.js';
@@ -42,6 +42,7 @@ const HomeScreen = (props) => {
         <Button 
           title="Reset the count!"
           onPress={() => setCount(0)}
+          color='#D73525'
         />
       </View>
       <View>
@@ -49,6 +50,12 @@ const HomeScreen = (props) => {
         <Text style={style.textStyle}>I'm an Touchable element. I'll take you to the Detail screen!</Text>
         </TouchableOpacity>
         <Text style={style.textStyle}>{count}</Text>
+      </View>
+      <View>
+         <ActivityIndicator 
+         size="large"
+         color="#0000ff" 
+         />
       </View>
     </View>
     
@@ -69,8 +76,8 @@ const style = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-between',
     padding: 10,
-    marginLeft: 55,
-    width: 300
+    marginLeft: 100,
+    width: 200,
   }
 }
 );

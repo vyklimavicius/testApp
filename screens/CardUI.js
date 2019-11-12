@@ -21,7 +21,7 @@ const style = StyleSheet.create({
     card: {
         marginTop: 10,
         fontSize: 15,
-        fontFamily: 'monospace'
+        // fontFamily: 'monospace'
     }
 });
 

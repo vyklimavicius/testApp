@@ -52,7 +52,7 @@ const style = StyleSheet.create({
   },
   textStyle: {
     fontSize: 20,
-    fontFamily: 'monospace',
+    // fontFamily: 'monospace',
     textAlign: "center",
     padding: 10
   },
@@ -74,7 +74,7 @@ const style = StyleSheet.create({
   headerCard: {
     marginTop: 20,
     fontSize: 20,
-    fontFamily: 'monospace',
+    // fontFamily: 'monospace',
     textAlign: "center",
     padding: 10,
     backgroundColor: '#367D07',
@@ -113,7 +113,7 @@ const AppNavigator = createStackNavigator(
             left: 50,
             fontSize: 20,
             color: '#ffffff',
-            fontFamily: 'monospace'}}>TodoList</Text>
+            }}>TodoList</Text>
         </View>
       ),
       headerTintColor: '#ffffff',

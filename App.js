@@ -2,23 +2,50 @@ import React from 'react';
 import { useState } from 'react';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator} from 'react-navigation-stack';
-import { StyleSheet, Text, View, TouchableOpacity, ActivityIndicator, TextInput, Image, ImageBackground, ScrollView, Button } from 'react-native';
+import { StyleSheet, 
+  Text, 
+  View, 
+  TouchableOpacity, 
+  ActivityIndicator, 
+  TextInput, 
+  Image, 
+  ImageBackground, 
+  ScrollView, 
+  Button, 
+  TouchableNativeFeedback } from 'react-native';
 import { Icon } from 'react-native-elements'
 import DetailScreen from './screens/DetailScreen.js';
 import ListScreen from './screens/ListScreen.js';
 import ImageScren from './screens/ImageScreen.js';
 import CardUI from './screens/CardUI.js';
 import Constants from 'expo-constants';
+import { Logs } from 'expo';
+import CardDetail from './screens/CardDetail.js';
 
 const HomeScreen = (props) => {
     
   const [tasks, setTasks] = useState([]);
-  
+  const [bool, setBool] = useState(false);
   let count = 0;
 
+  const detail = () => {
+    if (bool === false) {
+      setBool(true);
+    } else {
+      setBool(false)
+    }
+  };
+  
   const addTask = () => {
     setTasks([...tasks, 1]);
   };
+
+  TODO:
+  // const deleteTask = () => {
+  //   setTasks()
+  // }
+
+  console.log(bool);
 
   return (
     <View style={style.container}>
@@ -26,28 +53,34 @@ const HomeScreen = (props) => {
         <TouchableOpacity onPress={() => props.navigation.navigate('Details')}>
         <Text style={style.headerCard}>HomeScreen</Text>
         </TouchableOpacity>
-        <Icon
-          name="add"
-          color='#3A4893'
-          size={200}
-          onPress={() => {addTask()}}
-        />
-      {/* <TextInput
-        style={style.textInput}
-        onChangeText={ input => setInput(input)}
-        value={input}
-        placeholder={"Type a task"}
-      /> */}
+        <View style={style.buttons}>
+          <TouchableOpacity onPress={() => addTask()}>
+            <Image 
+              source={require('./assets/add_circle.png')}
+              style={style.image}
+            />
+          </TouchableOpacity>
+        <TouchableOpacity>
+          <Image
+            source={require('./assets/remove_circle.png')}
+            style={style.imageRemove}
+          />
+        </TouchableOpacity>
+        </View>
       {tasks.length === 0 ? null :
         <View style={style.scroll} >
             <ScrollView horizontal={true} contentContainerStyle={style.scrollView}>
       {tasks.map( task => {
          count++;
-         return <CardUI key={count}/>;
+         return <CardUI key={count} detail={detail}/>
        })}
           </ScrollView>
         </View>
         }
+        {bool ? 
+          <View style={style.cardDetail}>
+          <CardDetail />
+        </View> : null}
       </ImageBackground>
     </View>
   );
@@ -57,12 +90,11 @@ const style = StyleSheet.create({
   container: {
     borderStyle: 'solid',
   },
-  button: {
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    padding: 10,
-    marginLeft: 100,
-    width: 200,
+  buttons: {
+    flexDirection: 'row',
+    marginTop: 20,
+    marginHorizontal: 10,
+    justifyContent: 'center'
   },
   textInput: {
     height: 40, 
@@ -84,12 +116,32 @@ const style = StyleSheet.create({
     borderRadius: 10,
   },
   scroll: {
-    flex: 1,
-    // flexDirection: 'row',
-    marginTop: Constants.statusBarHeight
+    marginTop: 20,
   },
   scrollView: {
     alignItems: 'flex-start'
+  },
+  image: {
+    margin: 20,
+    width: 40,
+    height: 40,
+    tintColor: '#ffffff',
+    alignSelf: 'center',
+    backgroundColor: '#3A4893',
+    borderRadius: 10
+  },
+  imageRemove: {
+    margin: 20,
+    width: 40,
+    height: 40,
+    tintColor: '#ffffff',
+    alignSelf: 'center',
+    backgroundColor: '#E71554',
+    borderRadius: 10
+  },
+  cardDetail: {
+    alignItems: 'stretch',
+    marginTop: 20
   }
 }
 );

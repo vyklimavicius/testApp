@@ -1,20 +1,25 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Card, Avatar } from 'react-native-elements';
 
-const CardUI = () => {
-  
-  
+
+
+const CardUI = (props) => {
+
     return (
-        <Card title="Task"> 
-          <Avatar 
-            rounded
-            size="medium"
-            icon={{name: 'home'}}
-            containerStyle={{padding: 5, marginLeft: 150}}
-          />
-          <Text style={style.text}>📜 </Text>
-        </Card>
+      <View>
+        <TouchableOpacity onPress={() => props.detail()}>
+          <Card title="Task"> 
+            <Avatar 
+              rounded
+              size="medium"
+              icon={{name: 'home'}}
+              containerStyle={{padding: 5, marginLeft: 150}}
+            />
+            <Text style={style.text}>📜 </Text>
+          </Card>
+        </TouchableOpacity>
+      </View>
     )
 };
 

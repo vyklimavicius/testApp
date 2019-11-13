@@ -2,7 +2,8 @@ import React from 'react';
 import { useState } from 'react';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator} from 'react-navigation-stack';
-import { StyleSheet, Text, View, TouchableOpacity, ActivityIndicator, TextInput, Image, ImageBackground, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, ActivityIndicator, TextInput, Image, ImageBackground, ScrollView, Button } from 'react-native';
+import { Icon } from 'react-native-elements'
 import DetailScreen from './screens/DetailScreen.js';
 import ListScreen from './screens/ListScreen.js';
 import ImageScren from './screens/ImageScreen.js';
@@ -11,33 +12,39 @@ import Constants from 'expo-constants';
 
 const HomeScreen = (props) => {
     
-  const [input, setInput] = useState("");
-  console.log(input);
+  const [tasks, setTasks] = useState([]);
   
+  let count = 0;
+
+  const addTask = () => {
+    setTasks([...tasks, 1]);
+  };
 
   return (
     <View style={style.container}>
-      <ImageBackground source={require('./assets/bridge.jpg')} style={{ width: '100%', height: '100%' }}>
+      <ImageBackground source={require('./assets/wood.jpg')} style={{ width: '100%', height: '100%' }}>
         <TouchableOpacity onPress={() => props.navigation.navigate('Details')}>
         <Text style={style.headerCard}>HomeScreen</Text>
         </TouchableOpacity>
-      <TextInput
+        <Icon
+          name="add"
+          color='#3A4893'
+          size={200}
+          onPress={() => {addTask()}}
+        />
+      {/* <TextInput
         style={style.textInput}
         onChangeText={ input => setInput(input)}
         value={input}
         placeholder={"Type a task"}
-      />
-      {input === "" ? <ActivityIndicator
-        size="large"
-        color="#367D07"
-      /> :
+      /> */}
+      {tasks.length === 0 ? null :
         <View style={style.scroll} >
-          <ScrollView>
-            <CardUI text={input} />
-            <CardUI text={input} />
-            <CardUI text={input} />
-            <CardUI text={input} />
-            <CardUI text={input} />
+            <ScrollView horizontal={true} contentContainerStyle={style.scrollView}>
+      {tasks.map( task => {
+         count++;
+         return <CardUI key={count}/>;
+       })}
           </ScrollView>
         </View>
         }
@@ -49,12 +56,6 @@ const HomeScreen = (props) => {
 const style = StyleSheet.create({
   container: {
     borderStyle: 'solid',
-  },
-  textStyle: {
-    fontSize: 20,
-    fontFamily: 'monospace',
-    textAlign: "center",
-    padding: 10
   },
   button: {
     flexDirection: 'column',
@@ -77,14 +78,18 @@ const style = StyleSheet.create({
     fontFamily: 'monospace',
     textAlign: "center",
     padding: 10,
-    backgroundColor: '#367D07',
+    backgroundColor: '#3A4893',
     borderStyle: "solid",
     color: "#ffffff",
     borderRadius: 10,
   },
   scroll: {
     flex: 1,
+    // flexDirection: 'row',
     marginTop: Constants.statusBarHeight
+  },
+  scrollView: {
+    alignItems: 'flex-start'
   }
 }
 );
@@ -118,7 +123,7 @@ const AppNavigator = createStackNavigator(
       ),
       headerTintColor: '#ffffff',
       headerStyle: {
-        backgroundColor: '#367D07'
+        backgroundColor: '#3A4893'
       }
     }
   }
@@ -178,3 +183,9 @@ export default createAppContainer(AppNavigator);
     style={style.icon}
   />
 </TouchableOpacity> */
+
+/* <ActivityIndicator
+  size={200}
+  color="#3A4893"
+  style={{ marginTop: 60 }}
+/> */
